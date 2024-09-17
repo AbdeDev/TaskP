@@ -39,7 +39,7 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
    git clone https://github.com/votre-utilisateur/task-manager.git
    cd task-manager
 
-2. **Installer et utiliser les dépendances en local ** :
+2. **Installer et utiliser les dépendances en local** :
 
    ```pnpm install
 
