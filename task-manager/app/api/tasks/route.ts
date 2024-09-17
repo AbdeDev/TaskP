@@ -47,7 +47,7 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 
-  const { id } = await req.json(); // Récupérer l'ID de la tâche à supprimer
+  const { id } = await req.json();
 
   try {
     await prisma.task.delete({
@@ -69,7 +69,7 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 
-  const { id, completed } = await req.json(); // Récupérer l'ID et le statut de complétion de la tâche
+  const { id, completed } = await req.json();
 
   try {
     const updatedTask = await prisma.task.update({

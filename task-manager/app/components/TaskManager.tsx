@@ -35,7 +35,7 @@ const TaskManager = () => {
     });
 
     if (response.ok) {
-      removeTask(id); // Mise à jour du store local
+      removeTask(id);
     } else {
       console.error('Erreur lors de la suppression de la tâche');
     }
