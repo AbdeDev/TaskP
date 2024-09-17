@@ -1,22 +1,26 @@
 datasource db {
-  provider = "postgresql" // Si tu utilises PostgreSQL
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// Configuration du générateur Prisma Client
 generator client {
   provider = "prisma-client-js"
 }
 
+// Modèle pour les utilisateurs
 model User {
   id        Int      @id @default(autoincrement())
   name      String?
   email     String   @unique
   emailVerified DateTime?
   image     String?
-  accounts  Account[]
-  sessions  Session[]
+  accounts  Account[] // Relation avec les comptes pour l'authentification via NextAuth
+  sessions  Session[] // Relation avec les sessions pour l'authentification via NextAuth
+  tasks     Task[]    // Relation avec les tâches créées par l'utilisateur
 }
 
+// Modèle pour les comptes (authentification via OAuth)
 model Account {
   id                Int       @id @default(autoincrement())
   userId            Int
@@ -35,10 +39,21 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+// Modèle pour les sessions (gestion des sessions utilisateur)
 model Session {
   id           Int       @id @default(autoincrement())
   sessionToken String    @unique
   userId       Int
   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   expires      DateTime
+}
+
+// Modèle pour les tâches
+model Task {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean  @default(false)
+  userId    Int    
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }

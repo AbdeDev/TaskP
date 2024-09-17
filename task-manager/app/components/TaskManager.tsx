@@ -1,14 +1,19 @@
 "use client"
 
 import { useTaskStore } from '../store/useTaskStore';
+import { useEffect } from 'react';
 
 const TaskManager = () => {
-  const { tasks, addTask, toggleTask, removeTask } = useTaskStore();
+  const { tasks, fetchTasks, addTask, toggleTask, removeTask } = useTaskStore();
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   const handleAddTask = () => {
     const title = prompt('Enter task title');
     if (title) {
-      addTask({ id: Date.now(), title, completed: false });
+      addTask(title);
     }
   };
 
