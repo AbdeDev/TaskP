@@ -36,7 +36,8 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 1. **Cloner le projet** :
 
    ```bash
-   git clone https://github.com/votre-utilisateur/task-manager.git
+   git clone https:  https://github.com/votre-utilisateur/taskP.git
+   git clone ssh : git@github.com:votre-nom-utilisateur/TaskP.git
    cd task-manager
 
 2. **Installer et utiliser les dépendances en local** :
